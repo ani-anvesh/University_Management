@@ -86,6 +86,7 @@ CREATE TABLE `answer` (
   `faculty_id` int DEFAULT NULL,
   PRIMARY KEY (`answer_id`),
   KEY `query_id` (`query_id`),
+  FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`query_id`) REFERENCES `queries` (`query_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -143,6 +144,7 @@ CREATE TABLE `bank` (
   `student_id` int DEFAULT NULL,
   PRIMARY KEY (`bank_id`),
   KEY `mobile_id` (`mobile_id`),
+   FOREIGN KEY (student_id) REFERENCES student(student_id),
   CONSTRAINT `bank_ibfk_1` FOREIGN KEY (`mobile_id`) REFERENCES `mobile` (`mobile_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -527,6 +529,7 @@ CREATE TABLE `internship` (
   `company_email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`internship_id`),
   KEY `company_id` (`company_id`),
+  FOREIGN KEY (student_id) REFERENCES student(student_id),
   CONSTRAINT `internship_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -940,6 +943,7 @@ CREATE TABLE `mobile` (
   `mobile_id` int NOT NULL AUTO_INCREMENT,
   `mobile` varchar(10) DEFAULT NULL,
   `student_id` int DEFAULT NULL,
+  FOREIGN KEY (student_id) REFERENCES student(student_id),
   PRIMARY KEY (`mobile_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1024,6 +1028,7 @@ CREATE TABLE `queries` (
   `faculty_id` int DEFAULT NULL,
   PRIMARY KEY (`query_id`),
   KEY `student_id` (`student_id`),
+  FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id),
   CONSTRAINT `queries_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
